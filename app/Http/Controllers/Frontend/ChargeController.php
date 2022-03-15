@@ -78,6 +78,9 @@ class ChargeController extends Controller
             }
 
         }
+        else{
+            return redirect('login');
+        }
 
 
     }

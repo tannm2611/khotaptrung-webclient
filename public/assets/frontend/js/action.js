@@ -43,7 +43,7 @@ $('#transaction_history_end').datetimepicker({
             today: 'far fa-calendar-check-o',
             clear: 'fas fa-trash',
             close: 'far fa-times' },
-    minDate: moment()
+    // minDate: moment()
 });
 $('#transaction_history_start').datetimepicker({
     format: 'DD-MM-YYYY LT',
@@ -58,7 +58,7 @@ $('#transaction_history_start').datetimepicker({
             today: 'far fa-calendar-check-o',
             clear: 'fas fa-trash',
             close: 'far fa-times' },
-    minDate: moment()
+    // minDate: moment()
 });
 $('#datetimepicker2').datetimepicker({
     format: 'DD-MM-YYYY'

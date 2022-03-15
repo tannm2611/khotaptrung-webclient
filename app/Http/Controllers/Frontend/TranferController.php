@@ -50,7 +50,9 @@ class TranferController extends Controller
             }
 
         }
-
+        else{
+            return redirect('login');
+        }
 
     }
     public function postDepositBank(Request $request)
