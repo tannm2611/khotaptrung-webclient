@@ -93,7 +93,7 @@
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->item_acc->title}}</td>
                                         <td>{{$item->item_acc->position}}</td>
-                                        <td>{{$item->item_ref->title}}</td>
+                                        <td>{{$item->item_ref->parrent->title}}</td>
                                         <td>{{$item->group->title}}</td>
                                     </tr>
                                     @endforeach
