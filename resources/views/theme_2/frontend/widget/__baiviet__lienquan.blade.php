@@ -1,13 +1,17 @@
-
 @if(isset($data) && count($data) > 0)
     @foreach($data as$key => $item)
+
         @php
            $index = 6;
             if ($slug == $item->slug){
                 $index = 7;
             }
+            if ($id != $item->id ){
+                $index = 7;
+            }
         @endphp
         @if($key < $index)
+            @if($item->id != $id)
         <div class="col-lg-4">
             <!-- BEGIN Item Article -->
             <div class="item-article mb-4">
@@ -25,6 +29,7 @@
                 </div>
             </div><!-- BEGIN Item Article -->
         </div>
+        @endif
         @endif
     @endforeach
 @endif

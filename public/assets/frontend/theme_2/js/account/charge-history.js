@@ -19,6 +19,7 @@ $(document).ready(function(){
         loadDataChargeHistory(page,started_at_lsnt,ended_at_lsnt);
     });
 
+
     function loadDataChargeHistory(page,started_at_lsnt,ended_at_lsnt) {
 
         request = $.ajax({
@@ -30,10 +31,12 @@ $(document).ready(function(){
                 ended_at:ended_at_lsnt,
             },
             beforeSend: function (xhr) {
-
+                $(".load_spinner").show();
+                $("#data_napthe_history").hide();
             },
             success: (data) => {
-                console.log(data)
+                $(".load_spinner").hide();
+                $("#data_napthe_history").show();
                 $("#data_napthe_history").empty().html('');
                 $("#data_napthe_history").empty().html(data);
             },
@@ -85,4 +88,26 @@ $(document).ready(function(){
         loadDataChargeHistory(page,started_at_lsnt_data,ended_at_lsnt_data)
 
     });
+    var loc = window.location.search;
+
+    if(loc.replace('?log=','') == 'deposit-history'){
+        $('.nav-link').removeClass('active');
+        $('.tab-pane').removeClass('active');
+        $('.tab-pane').removeClass('show');
+        $('.data__napthe').addClass('active');
+        $('.data__napthe').addClass('show');
+        $('.data__napthe_tab').addClass('active');
+        $('.data__napthe_tab').addClass('show');
+
+        $('.started_at_txns_data').val('');
+        $('.ended_at_txns_data').val('');
+
+        var started_at_lsnt_data = $('.started_at_lsnt_data').val();
+        var ended_at_lsnt_data = $('.ended_at_lsnt_data').val();
+        let page = $('#hidden_page_service_lsnt').val();
+
+        loadDataChargeHistory(page,started_at_lsnt_data,ended_at_lsnt_data)
+
+
+    }
 })

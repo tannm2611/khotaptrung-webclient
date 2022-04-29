@@ -39,7 +39,6 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                console.log(data)
                 $("#data_pay_card_history_ls").empty().html('');
                 $("#data_pay_card_history_ls").empty().html(data);
             },

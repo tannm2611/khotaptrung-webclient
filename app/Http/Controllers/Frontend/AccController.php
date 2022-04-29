@@ -197,6 +197,7 @@ class AccController extends Controller
                 $valslider['data'] = 'list_acc';
                 $valslider['cat_slug'] = $data_category->slug;
                 $valslider['limit'] = 12;
+                $valslider['status'] = 1;
 
                 $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
                 $sliders = $result_Api_slider->data;
@@ -308,12 +309,14 @@ class AccController extends Controller
             if(isset($result_Apishow) && $result_Apishow->httpcode == 200){
                 $datashow = $result_Apishow->data;
 
-                $amount = (int)$datashow->price;
+                $amount = $datashow->price;
 
-                $atm_percent = setting('sys_atm_percent');
-                if (isset($atm_percent)){
-                    $amount = (int)($amount*$atm_percent)/100;
-                }
+//                $atm_percent = setting('sys_atm_percent');
+//                if (isset($atm_percent)){
+//                    $amount = (int)($amount*$atm_percent)/100;
+//                }
+
+//                return $amount;
 
                 $url = '/acc';
                 $method = "POST";

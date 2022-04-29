@@ -38,4 +38,10 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof \ReflectionException OR $e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) //Si la ruta no existe, mostar view 404.
+            return redirect('/');
+        return parent::render($request, $e);
+    }
 }

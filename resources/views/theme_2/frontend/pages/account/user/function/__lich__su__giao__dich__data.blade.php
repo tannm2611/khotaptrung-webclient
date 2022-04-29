@@ -15,6 +15,7 @@
         </tr>
         </thead>
         <tbody>
+
             @php
                 $prev = null;
             @endphp
@@ -25,6 +26,7 @@
                         $curr = \App\Library\Helpers::formatDate($item->created_at);
                     @endphp
                     @if($curr != $prev)
+
                         <tr>
                             <td colspan="8"><b>Ngày {{$curr}}</b></td>
                         </tr>
@@ -32,6 +34,7 @@
                             <td>{{ formatDateTime($item->created_at) }}</td>
                             <td>#{{$item->id}}</td>
                             <td> {{ $item->user->username }} </td>
+
                             <td>
                                 @foreach($config as $ils => $valls)
                                     @if($ils == $item->trade_type)

@@ -49,19 +49,19 @@
                         </div>
                     </div>
                     <div class="article-main d-flex pt-4 elsticky-wrap">
-                        <div class="social-share">
-                            <ul class="nav social-icons flex-column elsticky">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link"><i class="las la-share"></i></a>
-                                </li>
-                                <li class="nav-item facebook">
-                                    <a href="#" class="nav-link"><i class="lab la-facebook-f"></i></a>
-                                </li>
-                                <li class="nav-item twitter">
-                                    <a href="#" class="nav-link"><i class="lab la-twitter"></i></a>
-                                </li>
-                            </ul>
-                        </div>
+{{--                        <div class="social-share">--}}
+{{--                            <ul class="nav social-icons flex-column elsticky">--}}
+{{--                                <li class="nav-item">--}}
+{{--                                    <a href="#" class="nav-link"><i class="las la-share"></i></a>--}}
+{{--                                </li>--}}
+{{--                                <li class="nav-item facebook">--}}
+{{--                                    <a href="#" class="nav-link"><i class="lab la-facebook-f"></i></a>--}}
+{{--                                </li>--}}
+{{--                                <li class="nav-item twitter">--}}
+{{--                                    <a href="#" class="nav-link"><i class="lab la-twitter"></i></a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
                         <div class="article-content flex-grow-1 news_detail_content">
                             {!! $data->content !!}
 
@@ -71,7 +71,8 @@
                 <div class="mb-4 border-top pt-3">
                     <h4 class="title-style-left mb-3">Tin tức liên quan</h4>
                     <div class="row">
-                        @include('frontend.widget.__baiviet__lienquan',with(['slug'=>$slug]))
+
+                        @include('frontend.widget.__baiviet__lienquan',with(['slug'=>$slug,'id'=>$id]))
                     </div>
                 </div>
             </div>

@@ -91,7 +91,7 @@
                                         </div>
                                         <a href="javascript:void(0)" class="col-6 buyacc" data-id="{{ $item->randId }}">
                                             <div class="item_buy_list_view">
-                                                Chi tiết
+                                                Mua ngay
                                             </div>
                                         </a>
 

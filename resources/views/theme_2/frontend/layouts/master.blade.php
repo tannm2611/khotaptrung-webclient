@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <!-- Required meta tags -->
@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="path" content="" />
+    <meta name="robots" content="index,follow" />
     <meta name="jwt" content="jwt" />
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/custom.boostrap.css">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/node_modules/flickity/dist/flickity.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
     <!--    <link rel="stylesheet" href="css/main.css">-->
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v={{time()}}">
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
@@ -27,6 +29,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js?v={{time()}}"></script>
+
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>--}}
     @stack('js')
 
@@ -75,6 +78,13 @@
 <div class="scroll-top">
     <a href="#" class="scroll-top-link"><i class="las la-angle-double-up"></i></a>
 </div>
+<div class="text-center ajax-loading-store">
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+</div>
 <!-- Optional JavaScript; choose one of the two! -->
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/jquery/dist/jquery.min.js"></script>
@@ -83,7 +93,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/flickity/dist/flickity.pkgd.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-input-spinner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/sticky-kit.min.js"></script>
-
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
 
 
 

@@ -173,9 +173,11 @@ class ArticleController extends Controller
                 $dataitem = $result->dataitem;
                 Session::put('path', $_SERVER['REQUEST_URI']);
                 $slug = $data->slug;
+                $id = $data->id;
                 return view('frontend.pages.article.show')
                     ->with('dataitem',$dataitem)
                     ->with('slug',$slug)
+                    ->with('id',$id)
                     ->with('data',$data);
             }else{
                 $result = $result_Api->data;

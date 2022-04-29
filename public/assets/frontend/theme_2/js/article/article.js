@@ -40,6 +40,7 @@ $(document).ready(function(){
             },
             beforeSend: function (xhr) {
                 $('#loading-item').removeClass('hide');
+                $("#overlay").fadeIn(300);
             },
             success: (data) => {
                 $(".article_data").empty().html('');
@@ -50,6 +51,7 @@ $(document).ready(function(){
             },
             complete: function (data) {
                 $('#loading-item').addClass('hide')
+                $("#overlay").fadeOut(100);
             }
         });
     }

@@ -72,7 +72,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
 
-                Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
+
 
                 Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
                 Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
@@ -80,22 +80,19 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/dich-vu/{slug}/data', [ServiceController::class , "getShowData"]);
                 Route::get('/dich-vu/{slug}/modaldata', [ServiceController::class , "getShowModalData"]);
 
-                Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
-                Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
-
                 Route::group(['middleware' => ['auth_custom']], function (){
-                    Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-                        ->name('index');
 
-                    Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
-                        ->name('getThongTin');
-
-                    Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
-                        ->name('index');
                     Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
                         //profile
+                        Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+                            ->name('index');
 
+                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
+                            ->name('getThongTin');
+
+                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
+                            ->name('index');
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                         // route post mua thẻ
 
@@ -147,6 +144,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 // Route không cần Auth load dữ liệu không cache
                 Route::group(['middleware' => ['doNotCacheResponse']], function (){
                     Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
+
+                    Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
+                    Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
+                    Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
 
 
                 });
@@ -255,13 +256,13 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
                         ->name('postWithdrawItem');
 
+                    Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+                        ->name('loginfacebook');
 
                 });
 
             });
             Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
-            Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-                ->name('loginfacebook');
 
 //    Route::group(['middleware' => ['auth_custom']], function (){
 //        Route::group(['middleware' => ['cacheResponse:300']], function (){
@@ -271,6 +272,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 //    });
         });
 });
+
 //    }
 //    elseif (theme('')->theme_key == 'theme_2'){
 //        Route::group(array('middleware' => ['verify_shop']) , function (){

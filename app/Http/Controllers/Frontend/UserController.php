@@ -283,7 +283,8 @@ class UserController extends Controller
 
                 $result = $result_Api->data;
                 $data = $result->data;
-
+                $config = $result->config;
+                $status = $result->status;
                 $per_page = 0;
                 $total = 0;
                 if (isset($data->total)){
@@ -299,6 +300,8 @@ class UserController extends Controller
                 return view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
                     ->with('data', $data)
                     ->with('total',$total)
+                    ->with('status',$status)
+                    ->with('config',$config)
                     ->with('per_page',$per_page);
             }
 
@@ -456,17 +459,25 @@ class UserController extends Controller
                         $arrpin = array();
                         $arrserial = array();
 
-                        for ($i = 0; $i < count($data->data); $i++){
-                            $serial = $data->data[$i]->serial;
-                            $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
-                            array_push($arrserial,$serial);
-                        }
+//                        for ($i = 0; $i < count($data->data); $i++){
+//                            for ($i = 0; $i < count($data->data[$i]->card); $i++){
+//
+//                                $serial = $data->data[$i]->card[0]->serial;
+//
+//                                $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
+//
+//                                array_push($arrserial,$serial);
+//
+//                                $pin = $data->data[$i]->card[0]->pin;
+//                                $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+//
+//                                array_push($arrpin,$pin);
+//
+//                            }
+//                            dd($arrpin);
+//                        }
 
-                        for ($i = 0; $i < count($data->data); $i++){
-                            $pin = $data->data[$i]->pin;
-                            $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
-                            array_push($arrpin,$pin);
-                        }
+
 
                         $per_page = 0;
                         $total = 0;
@@ -478,18 +489,20 @@ class UserController extends Controller
                             $per_page = $data->to;
                         }
 
-                        if (isEmpty($data->data)) {
-                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                            $data->setPath($request->url());
-                        }
+                       if (isEmpty($data->data)) {
+                           $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                           $data->setPath($request->url());
+                       }
 
-                        return view('frontend.pages.account.user.function.__lich__su__nap__the')
+
+                        return view('frontend.pages.account.user.function.__lich__su__mua__the')
                             ->with('data',$data)
-                            ->with('arrpin',$arrpin)
                             ->with('total',$total)
                             ->with('per_page',$per_page)
+                            ->with('arrpin',$arrpin)
                             ->with('arrserial',$arrserial);
                     } else {
+
                         return redirect()->back()->withErrors($result->message);
                     }
                 } else {

@@ -1,50 +1,66 @@
 
-
 <!-- BEGIN List Items -->
+{{--@dd($data->data)--}}
+
+
+
 @if(empty($data->data))
+    <div class="row" >
     @if(isset($data) && count($data) > 0)
+
         @foreach ($data as $key => $item)
+                @foreach($item->card as $itemCard)
             <div class="col-lg-3 col-md-6">
                 <!-- BEGIN Purchased Item -->
+
                 <div class="purchased-item mb-4">
                     <div class="mb-2 item-meta small text-secondary">
                         <i class="las la-clock"></i> {{ formatDateTime($item->created_at) }}
                         {{--                        12:24 31/03/2021--}}
                     </div>
+
+
+
                     <div class="item-content">
                         <div class="inner">
                             <div class="item-logo mb-2 d-flex align-items-center">
-                                <img src="{{ $item->image }}" class="logo me-2" alt=""> {{ $item->telecom_key }}
-                                {{--                                Thẻ Garena--}}
+{{--                                <img src="{{ $item->image }}" class="logo me-2" alt=""> --}}
+                                                                Thẻ
                             </div>
                             <div class="mb-2">
                                 <label class="mb-1 text-secondary">Mã Pin</label>
                                 <div class="input-group">
-                                    @if(isset($arrpin) && count($arrpin))
-                                        <input type="text" class="form-control border-end-0" placeholder="" value="{{ $arrpin[$key] }}" aria-label="">
-                                    @endif
-                                    <span class="input-group-text bg-transparent text-secondary"><i class="las la-copy"></i></span>
+{{--                                    @if(isset($arrpin) && count($arrpin))--}}
+{{--                                        <input type="text" class="form-control border-end-0" placeholder="" value="{{ $arrpin[$key] }}" aria-label="">--}}
+{{--                                    @endif--}}
+
+                                    <input type="text" class="form-control border-end-0" placeholder="" value="{{  App\Library\Helpers::Decrypt($itemCard->pin,config('module.charge.key_encrypt')) }}" aria-label="">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="las la-copy" style="cursor: pointer" data-id="{{  App\Library\Helpers::Decrypt($itemCard->pin,config('module.charge.key_encrypt')) }}"></i></span>
                                 </div>
                             </div>
                             <div class="mb-2 d-flex justify-content-between">
                                 <div class="text-secondary">Số seri</div>
                                 <div>
-                                    @if(isset($item->serial))
-                                        {{ $item->serial }}
-                                    @endif
+{{--                                    @if(isset($item->serial))--}}
+{{--                                        {{ $item->serial }}--}}
+{{--                                    @endif--}}
+                                    {{  App\Library\Helpers::Decrypt($itemCard->serial,config('module.charge.key_encrypt')) }}
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div><!-- END Purchased Item -->
             </div>
         <!-- END List Items -->
+                @endforeach
         @endforeach
     @else
         <div class="col-md-12">
             <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
         </div>
     @endif
+    </div>
 @endif
 <div class="row">
     <div class="col-md-12 left-right justify-content-end">
@@ -93,3 +109,13 @@
 {{--        </ul>--}}
 {{--    </nav>--}}
 {{--</div>--}}
+<script>
+    $('body').on('click','i.la-copy',function(e){
+        data = $(this).data('id');
+        var $temp = $("<input>");
+        $("body #copy").html($temp);
+        $temp.val($.trim(data)).select();
+        document.execCommand("copy");
+        $temp.remove();
+    });
+</script>
