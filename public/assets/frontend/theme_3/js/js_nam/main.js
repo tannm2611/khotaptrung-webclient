@@ -73,31 +73,34 @@ function openMenuProfile(){
         $('.menu-profile-mobile').toggleClass('menu-profile-mobile_show');
     }, 0);
 }
-$('#menu_service').click(function () {
+$('.box-list-service').mouseover(function () {
     // handleToggleContent1();
     let menu_service = $('.box-list-service');
     // card_desc1.toggleClass('box-list-service-show', 1000, "easeOutSine" );
     animateTime = 10;
-    if(menu_service.height() >= 55 && menu_service.height() <= 56){
+    // if(menu_service.height() >= 55 && menu_service.height() <= 56){
 
         autoHeightAnimate(menu_service, animateTime);
-    } else {
-        menu_service.stop().animate({ height: '56px' }, animateTime);
-    }
+    // }
+}).mouseout(function() {
+    let menu_service = $('.box-list-service');
+    menu_service.stop().animate({ height: '56px' }, animateTime);
 });
-$('#menu_top_list').click(function () {
+$('.box-list-top').mouseover(function () {
     // handleToggleContent1();
     let menu_top_list = $('.box-list-top');
 
     // card_desc1.toggleClass('box-list-service-show', 1000, "easeOutSine" );
     animateTime = 10;
-    if(menu_top_list.height() >= 55 && menu_top_list.height() <= 56){
-
+    // if(menu_top_list.height() >= 55 && menu_top_list.height() <= 56){
+    //
         autoHeightAnimate(menu_top_list, animateTime);
-    } else {
+    // } else {
 
-        menu_top_list.stop().animate({ height: '56px' }, animateTime);
-    }
+    // }
+}).mouseout(function() {
+    let menu_top_list = $('.box-list-top');
+    menu_top_list.stop().animate({ height: '56px' }, animateTime);
 });
 function autoHeightAnimate(element, time){
     var curHeight = element.height(), // Get Default Height
@@ -105,12 +108,7 @@ function autoHeightAnimate(element, time){
     element.height(curHeight); // Reset to Default Height
     element.stop().animate({ height: autoHeight }, time); // Animate to Auto Height
 }
-function autoHeightAnimate2(element, time){
-    var curHeight = element.height(), // Get Default Height
-        autoHeight = element.css('height', 'auto').height(); // Get Auto Height
-    element.height(curHeight); // Reset to Default Height
-    element.stop().animate({ height: autoHeight }, time); // Animate to Auto Height
-}
+
 function handleToggleContent1(){
     // $('.js-toggle-content .view-less').toggle();
     // $('.js-toggle-content .view-more').toggle();

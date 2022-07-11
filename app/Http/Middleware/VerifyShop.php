@@ -29,17 +29,20 @@ class VerifyShop extends Middleware
     public function handle( $request, Closure $next)
     {
 
-        $data = Cache::rememberForever('verify_shop', function()  {
+        $verify_shop = Cache::rememberForever('verify_shop', function()  {
             $url = '/very-shop';
             $method = "POST";
             $data = DirectAPI::_makeRequest($url,[],$method);
 
-            return $data;
+            if(isset($data) &&$data->response_code === 200 && $data->response_data->status == 1){
+                return true;
+            }
+            return false;
+
+//            return $data;
         });
-        if(isset($data) &&$data->response_code === 200 && $data->response_data->status == 1){
-
+        if($verify_shop === true){
             return $next($request);
-
         }
 
         return response('Shop không có quyền truy cập!');
